@@ -2,8 +2,7 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 12
+      - echon Nothing to Install
   pre_build:
     commands:
       - ls -a

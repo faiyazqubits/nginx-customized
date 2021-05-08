@@ -7,8 +7,6 @@ phases:
   pre_build:
     commands:
       - ls -a
-      - node -v
-      - yarn --version
       - aws --version
       - aws sts get-caller-identity
       - docker --version
@@ -20,12 +18,12 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Client image...          
+      - echo Building the NGINX image...          
       - docker build -t nginx:$IMAGE_TAG .
       - docker tag nginx:$IMAGE_TAG 566649833727.dkr.ecr.ap-south-1.amazonaws.com/nginx:$IMAGE_TAG
      
   post_build:
     commands:
       - docker image ls
-      - echo Pushing the client image...
+      - echo Pushing the NGINX image...
       - docker push 566649833727.dkr.ecr.ap-south-1.amazonaws.com/nginx:$IMAGE_TAG

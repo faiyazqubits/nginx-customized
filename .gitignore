@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+
+# Mac Guys
+.DS_Store
+
+# environment files
+.env.production
+dev.env
+prod.env
+
+# pdf files
+pdf
+
+# build code
+build
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# generated code
+**/generated

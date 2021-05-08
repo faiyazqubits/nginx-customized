@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - ls -a
+      - node -v
+      - yarn --version
+      - aws --version
+      - aws sts get-caller-identity
+      - docker --version
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 566649833727.dkr.ecr.ap-south-1.amazonaws.com
+      - IMAGE_TAG=$(git log -1 --pretty=%h)_$(date +"%Y_%m_%d")_$CODEBUILD_SOURCE_VERSION
+      - echo $IMAGE_TAG
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Client image...          
+      - docker build -t nginx:$IMAGE_TAG .
+      - docker tag nginx:$IMAGE_TAG 566649833727.dkr.ecr.ap-south-1.amazonaws.com/nginx:$IMAGE_TAG
+     
+  post_build:
+    commands:
+      - docker image ls
+      - echo Pushing the client image...
+      - docker push 566649833727.dkr.ecr.ap-south-1.amazonaws.com/nginx:$IMAGE_TAG

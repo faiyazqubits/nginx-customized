@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-      - echon Nothing to Install
+      - echo Nothing to Install
   pre_build:
     commands:
       - ls -a

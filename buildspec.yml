@@ -8,6 +8,7 @@ phases:
       - aws --version
       - aws sts get-caller-identity
       - docker --version
+      - git --version
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 566649833727.dkr.ecr.ap-south-1.amazonaws.com
       - IMAGE_TAG=$(git log -1 --pretty=%h)_$(date +"%Y_%m_%d")_$CODEBUILD_SOURCE_VERSION

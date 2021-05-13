@@ -29,6 +29,6 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"nginx-80","imageUri":"%s"}]' 566649833727.dkr.ecr.ap-south-1.amazonaws.com/nginx:$IMAGE_TAG > imagedefinitions.json
 
-  artifacts:
+artifacts:
     files: imagedefinitions.json
 
